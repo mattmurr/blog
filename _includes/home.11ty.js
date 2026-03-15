@@ -4,15 +4,15 @@ exports.data = {
   layout: "base",
 };
 
-const li = (collection) => {
+const li = (ctx, collection) => {
   if (collection.len < 1) return [];
   return collection
     .sort((a, b) => b.page.date - a.page.date)
     .map(
       ({ page, data, url }) =>
         html`<li>
-          ${this.pageDate(page.date)}
-          <a href="${this.url(url)}">${data.title || url}</a>
+          ${ctx.pageDate(page.date)}
+          <a href="${ctx.url(url)}">${data.title || url}</a>
           <!-- Render description underneath entry if exists -->
           ${data.description ? html`</br><small>${data.description}</small>` : ""}
         </li>`,
@@ -26,7 +26,7 @@ exports.render = function({ content, collections }) {
       <div style="flex:50%;">
         <h3>Posts</h3>
         <ul>
-          ${li(collections.post)}
+          ${li(this, collections.post)}
         </ul>
       </div>
     </section>`;

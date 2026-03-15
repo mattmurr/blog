@@ -32,6 +32,25 @@ module.exports = function(eleventyConfig) {
 		}
 	});
 
+  eleventyConfig.addNunjucksAsyncShortcode("image", async function(src, alt, sizes) {
+    let metadata = await Image(src, {
+      widths: [250, 426, 580, 768],
+      formats: ["webp", "jpeg", "png"],
+      urlPath: "/assets/img/",
+      outputDir: "./_site/assets/img/"
+    });
+
+    let imageAttributes = {
+      alt,
+      sizes: sizes || "(max-width: 750px)",
+      loading: "lazy",
+      decoding: "async",
+      class: "photo"
+    };
+
+    return Image.generateHTML(metadata, imageAttributes);
+  });
+
   eleventyConfig.setLibrary("md", md);
 };
 
@@ -46,7 +65,7 @@ md.renderer.rules.image = function(tokens, idx, options, env, self) {
   const widths = [250, 426, 580, 768]; // choose your own widths, or [null] to disable resize
   const imgOpts = {
     widths,
-    formats: ["webp", "jpeg"], // choose your own formats (see docs)
+    formats: ["webp", "jpeg", "png"], // choose your own formats (see docs)
     urlPath: "/assets/img/", // src path in HTML output
     outputDir: "./_site/assets/img/", // where the generated images will go
   };

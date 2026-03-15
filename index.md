@@ -1,9 +1,6 @@
 ---
 layout: home
-data: 
-  title: "Home"
-  description: "Welcome to the home page of the website."
-  keywords: "home, welcome"
+title: "compti.me"
 ---
 
 # Welcome

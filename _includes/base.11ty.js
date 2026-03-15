@@ -21,7 +21,8 @@ exports.render = function(data) {
             <a href="/"><h3>compti.me</h3></a>
             <span>
               <a href="https://github.com/mattmurr">GitHub</a>
-              <a href="https://x.com/mattmurr001">X</a>
+              <a href="https://x.com/mattmurr">X</a>
+              <a href="https://pub.compti.me">Mastodon</a>
               <a href="/feed.xml">RSS</a>
             </span>
           </nav>
